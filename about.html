@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Help &amp; documentation — MIST Job Portal</title>
+  <meta name="description" content="About MIST Job Portal: the student project, documentation, contact details, and an issue report form.">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1>Help &amp; documentation</h1>
+        <p>What this project is, how it is built, and how to reach the team.</p>
+      </div>
+      <a class="btn btn-ghost" href="/jobs.html">Browse jobs</a>
+    </div>
+
+    <div class="info-grid">
+      <section class="card pad-lg" id="intro">
+        <h2>Introduction</h2>
+        <p>
+          MIST Job Portal is a student project that connects job seekers with
+          employers: register an account, build a profile, upload a resume, post a job,
+          apply, review applicants, and schedule interviews.
+        </p>
+        <p>
+          The portal is built with plain HTML, CSS, and JavaScript, backed by Supabase for
+          authentication, PostgreSQL storage, and private file storage. Access rules are
+          enforced in the database with Row Level Security, not in the browser.
+        </p>
+
+        <dl class="detail-list" style="margin-top:.7rem">
+          <div><dt>Roles</dt><dd>Job seeker · Employer · Admin</dd></div>
+          <div><dt>Stack</dt><dd>HTML, CSS, JavaScript, Supabase</dd></div>
+          <div><dt>Hosting</dt><dd>GitHub + Vercel</dd></div>
+          <div><dt>Status</dt><dd>Student demo build</dd></div>
+        </dl>
+      </section>
+
+      <div class="stack">
+        <section class="card pad-lg" id="docs">
+          <h2>Documentation</h2>
+          <p class="muted" style="font-size:.85rem">
+            The database design and setup notes are included in the repository.
+          </p>
+          <ul class="doc-list">
+            <li>
+              <a href="/README.md" target="_blank" rel="noopener">Setup and deployment guide</a>
+              <span>README.md</span>
+            </li>
+            <li>
+              <a href="/docs/ERD-REVIEW.md" target="_blank" rel="noopener">ERD audit and fixes</a>
+              <span>ERD-REVIEW.md</span>
+            </li>
+            <li>
+              <a href="/docs/erd.mmd" target="_blank" rel="noopener">Corrected ERD (Mermaid)</a>
+              <span>erd.mmd</span>
+            </li>
+            <li>
+              <a href="/docs/schema.sql" target="_blank" rel="noopener">Database schema, RLS, storage</a>
+              <span>schema.sql</span>
+            </li>
+            <li>
+              <a href="/docs/job-portal-ERD.mwb" download>Original ERD file</a>
+              <span>.mwb</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="card pad-lg" id="contact">
+          <h2>Contact</h2>
+          <p class="muted" style="font-size:.85rem">
+            For questions about the project, demo accounts, or the database design:
+          </p>
+          <dl class="detail-list">
+            <div><dt>Email</dt><dd><a id="contact-email" href="mailto:careers@mistjobportal.test">careers@mistjobportal.test</a></dd></div>
+            <div><dt>School</dt><dd>MIST — student group project</dd></div>
+            <div><dt>Response</dt><dd>Within 2–3 school days</dd></div>
+          </dl>
+        </section>
+      </div>
+
+      <section class="card pad-lg" id="report">
+        <h2>Report an issue</h2>
+        <p class="muted" style="font-size:.85rem">
+          Found a bug, a broken link, or content that needs fixing? Send a note and it will
+          show up in the admin console.
+        </p>
+
+        <form class="form" id="report-form" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="report-name">Name <span class="muted">(optional)</span></label>
+              <input id="report-name" name="name" type="text" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="report-email">Email <span class="muted">(optional)</span></label>
+              <input id="report-email" name="email" type="email" autocomplete="email">
+            </div>
+          </div>
+          <div class="field">
+            <label for="report-category">Type of report</label>
+            <select id="report-category" name="category">
+              <option value="bug">Bug or broken page</option>
+              <option value="content">Wrong or outdated content</option>
+              <option value="account">Account or login problem</option>
+              <option value="general">General feedback</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="report-message">Message</label>
+            <textarea id="report-message" name="message" rows="3" required
+              placeholder="What happened? Include the page and what you expected to see."></textarea>
+          </div>
+          <p class="error-text hidden" id="report-error"></p>
+          <p class="success-text hidden" id="report-success"></p>
+          <button class="btn btn-primary btn-block" type="submit" id="report-submit">Send report</button>
+          <p class="hint" style="margin:0">
+            Reports are stored in the <code>feedback</code> table and visible to admins only.
+          </p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer id="app-footer"></footer>
+
+  <script src="/assets/js/config.js"></script>
+  <script type="module" src="/assets/js/pages/about.js"></script>
+</body>
+</html>

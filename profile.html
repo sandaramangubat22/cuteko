@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My profile — MIST Job Portal</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1>My profile</h1>
+        <p>Employers see this information when you apply.</p>
+      </div>
+    </div>
+
+    <div id="setup-banner" class="card setup-banner hidden">
+      <b>Finish setting up your profile</b>
+      <div class="muted" style="font-size:.9rem">Fill in your details and upload a resume to start applying.</div>
+    </div>
+
+    <div class="split-layout">
+      <section class="card pad-lg">
+        <h2 style="margin-top:0;font-size:1.25rem">Personal details</h2>
+        <form class="form" id="profile-form" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="first_name">First name</label>
+              <input id="first_name" name="first_name" type="text" required>
+            </div>
+            <div class="field">
+              <label for="last_name">Last name</label>
+              <input id="last_name" name="last_name" type="text" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="middle_name">Middle name</label>
+            <input id="middle_name" name="middle_name" type="text">
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="phone_number">Phone number</label>
+              <input id="phone_number" name="phone_number" type="tel" required>
+            </div>
+            <div class="field">
+              <label for="date_of_birth">Date of birth</label>
+              <input id="date_of_birth" name="date_of_birth" type="date">
+            </div>
+          </div>
+          <div class="field">
+            <label for="address">Address</label>
+            <input id="address" name="address" type="text" required>
+          </div>
+          <div class="field">
+            <label for="education">Highest education</label>
+            <input id="education" name="education" type="text" placeholder="e.g. BS Information Technology">
+          </div>
+          <div class="field">
+            <label for="skills">Skills</label>
+            <textarea id="skills" name="skills" rows="3" placeholder="e.g. JavaScript, SQL, UI design"></textarea>
+          </div>
+          <div class="field">
+            <label for="experience">Experience</label>
+            <textarea id="experience" name="experience" rows="3" placeholder="Short summary of your work experience"></textarea>
+          </div>
+          <div class="field">
+            <label for="bio">Bio</label>
+            <textarea id="bio" name="bio" rows="3" placeholder="A short introduction about yourself"></textarea>
+          </div>
+          <p class="error-text hidden" id="profile-error"></p>
+          <div class="row">
+            <button class="btn btn-primary" type="submit" id="profile-submit">Save profile</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card pad-lg">
+        <h2 style="margin-top:0;font-size:1.25rem">Resumes</h2>
+        <p class="muted" style="font-size:.88rem">Upload a PDF or Word file. Your default resume is preselected when you apply.</p>
+
+        <form class="form" id="resume-form">
+          <div class="field">
+            <label for="resume_title">Resume title</label>
+            <input id="resume_title" name="resume_title" type="text" placeholder="e.g. Software Developer Resume">
+          </div>
+          <div class="field">
+            <label for="resume_file">File (PDF, DOC, DOCX)</label>
+            <input id="resume_file" name="resume_file" type="file" accept=".pdf,.doc,.docx" required>
+          </div>
+          <button class="btn btn-teal btn-block" type="submit" id="resume-submit">Upload resume</button>
+        </form>
+
+        <hr class="divider">
+        <div id="resume-list" class="stack">
+          <div class="muted" style="font-size:.85rem">Loading resumes…</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer id="app-footer"></footer>
+
+  <script src="/assets/js/config.js"></script>
+  <script type="module" src="/assets/js/pages/profile.js"></script>
+</body>
+</html>

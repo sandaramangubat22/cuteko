@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Employer dashboard — MIST Job Portal</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1 id="greeting">Employer dashboard</h1>
+        <p>Manage your job posts and applicants.</p>
+      </div>
+      <div class="row">
+        <a class="btn btn-ghost" href="/employer/company.html">Company profile</a>
+        <a class="btn btn-primary" href="/employer/post-job.html">Post a job</a>
+      </div>
+    </div>
+
+    <div id="setup-banner" class="card setup-banner hidden">
+      <b>Set up your company first</b>
+      <div class="muted" style="font-size:.9rem">You need a company profile before posting jobs.</div>
+      <div style="margin-top:.6rem"><a class="btn btn-teal btn-sm" href="/employer/company.html?setup=1">Complete company profile</a></div>
+    </div>
+
+    <div class="stats" style="margin-bottom:1.5rem">
+      <div class="stat"><div class="label">Job posts</div><div class="value" id="stat-jobs">—</div></div>
+      <div class="stat"><div class="label">Open</div><div class="value" id="stat-open">—</div></div>
+      <div class="stat"><div class="label">Applicants</div><div class="value" id="stat-applicants">—</div></div>
+      <div class="stat"><div class="label">Hired</div><div class="value" id="stat-hired">—</div></div>
+    </div>
+
+    <div id="jobs-root">
+      <div class="skeleton" style="height:140px"></div>
+    </div>
+  </main>
+
+  <footer id="app-footer"></footer>
+
+  <script src="/assets/js/config.js"></script>
+  <script type="module" src="/assets/js/pages/employer-dashboard.js"></script>
+</body>
+</html>

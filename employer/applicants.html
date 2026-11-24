@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Applicants — MIST Job Portal</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1>Applicants</h1>
+        <p>Review candidates, update their status, and schedule interviews.</p>
+      </div>
+      <a class="btn btn-ghost" href="/employer/dashboard.html">Back to dashboard</a>
+    </div>
+
+    <div class="filters filters-split">
+      <select id="job-filter" aria-label="Filter by job">
+        <option value="">All job posts</option>
+      </select>
+      <button class="btn btn-ghost" type="button" id="refresh">Refresh</button>
+    </div>
+
+    <div id="applicants-root">
+      <div class="skeleton" style="height:140px"></div>
+    </div>
+  </main>
+
+  <dialog class="modal" id="interview-dialog">
+    <form id="interview-form">
+      <div class="modal-head">
+        <h3>Schedule interview</h3>
+        <button class="btn btn-ghost btn-sm" type="button" id="interview-close">Close</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="application_id">
+        <div class="form-row">
+          <div class="field">
+            <label for="interview_date">Date</label>
+            <input id="interview_date" name="interview_date" type="date" required>
+          </div>
+          <div class="field">
+            <label for="interview_time">Time</label>
+            <input id="interview_time" name="interview_time" type="time" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="interview_type">Type</label>
+          <select id="interview_type" name="interview_type" required>
+            <option>In-person</option>
+            <option>Online</option>
+            <option>Phone</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="interview_location">Location / meeting link</label>
+          <input id="interview_location" name="interview_location" type="text" required placeholder="Office address or meeting URL">
+        </div>
+        <div class="field">
+          <label for="interview_notes">Notes (optional)</label>
+          <textarea id="interview_notes" name="interview_notes" rows="3"></textarea>
+        </div>
+        <p class="error-text hidden" id="interview-error"></p>
+      </div>
+      <div class="modal-foot">
+        <button class="btn btn-ghost" type="button" id="interview-cancel">Cancel</button>
+        <button class="btn btn-primary" type="submit" id="interview-save">Schedule interview</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer id="app-footer"></footer>
+
+  <script src="/assets/js/config.js"></script>
+  <script type="module" src="/assets/js/pages/employer-applicants.js"></script>
+</body>
+</html>

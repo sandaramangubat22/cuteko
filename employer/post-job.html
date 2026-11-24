@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Post a job — MIST Job Portal</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1 id="page-title">Post a job</h1>
+        <p>Describe the role clearly — good posts get better applicants.</p>
+      </div>
+      <a class="btn btn-ghost" href="/employer/dashboard.html">Back to dashboard</a>
+    </div>
+
+    <form class="form" id="job-form" novalidate>
+      <section class="card pad-lg">
+        <h2 style="margin-top:0;font-size:1.25rem">Role basics</h2>
+
+        <div class="field">
+          <label for="job_title">Job title</label>
+          <input id="job_title" name="job_title" type="text" required placeholder="e.g. Junior Web Developer">
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="employment_type">Employment type</label>
+            <select id="employment_type" name="employment_type" required>
+              <option value="">Select…</option>
+              <option>Full-time</option>
+              <option>Part-time</option>
+              <option>Contract</option>
+              <option>Internship</option>
+              <option>Freelance</option>
+              <option>Remote</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="location">Location</label>
+            <input id="location" name="location" type="text" required placeholder="e.g. Manila, Philippines">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="salary_range">Salary range</label>
+            <input id="salary_range" name="salary_range" type="text" placeholder="e.g. ₱25,000 – ₱35,000 / month">
+          </div>
+          <div class="field">
+            <label for="application_deadline">Application deadline</label>
+            <input id="application_deadline" name="application_deadline" type="date">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="job_status">Visibility</label>
+          <select id="job_status" name="job_status">
+            <option value="open">Open — visible to everyone</option>
+            <option value="draft">Draft — only you can see it</option>
+            <option value="closed">Closed — no new applications</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="card pad-lg">
+        <h2 style="margin-top:0;font-size:1.25rem">Details</h2>
+        <div class="field">
+          <label for="job_description">Job description</label>
+          <textarea id="job_description" name="job_description" rows="6" required placeholder="Responsibilities, team, schedule…"></textarea>
+        </div>
+        <div class="field">
+          <label for="qualifications">Qualifications</label>
+          <textarea id="qualifications" name="qualifications" rows="4" placeholder="Education, experience, certifications…"></textarea>
+        </div>
+        <div class="field">
+          <label for="skills_required">Skills required</label>
+          <textarea id="skills_required" name="skills_required" rows="3" placeholder="e.g. JavaScript, SQL, communication"></textarea>
+        </div>
+      </section>
+
+      <p class="error-text hidden" id="job-error"></p>
+      <div class="row">
+        <button class="btn btn-primary" type="submit" id="job-submit">Publish job</button>
+        <a class="btn btn-ghost" href="/employer/dashboard.html">Cancel</a>
+      </div>
+    </form>
+  </main>
+
+  <footer id="app-footer"></footer>
+
+  <script src="/assets/js/config.js"></script>
+  <script type="module" src="/assets/js/pages/employer-post-job.js"></script>
+</body>
+</html>

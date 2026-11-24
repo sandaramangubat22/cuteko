@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job Portal — Find work. Hire talent.</title>
+  <meta name="description" content="Job Portal connects job seekers with employers. Browse open roles, apply with your resume, and manage applicants in one place.">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Student project</span>
+          <h1>Find work. <span class="accent-ink">Hire talent.</span></h1>
+          <p class="lead">
+            Browse verified job posts, apply with your resume, and follow every application
+            from one dashboard — or post a role and review candidates.
+          </p>
+
+          <form class="search-bar" id="hero-search">
+            <input type="search" name="q" placeholder="Job title, skill, or keyword" aria-label="Search jobs">
+            <input type="text" name="location" placeholder="City or location" aria-label="Location">
+            <button class="btn btn-primary" type="submit">Search</button>
+          </form>
+
+          <p class="hero-foot">
+            <button class="text-btn" type="button" id="geo-locate">Use my location</button>
+            <span class="foot-sep" aria-hidden="true">&middot;</span>
+            <span class="foot-guest">No account needed to browse.</span>
+            <a href="/jobs.html">See all openings</a>
+          </p>
+          <p class="geo-note hidden" id="geo-note" role="status"></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="app-footer"></footer>
+
+  <script src="/assets/js/config.js"></script>
+  <script type="module" src="/assets/js/pages/home.js"></script>
+</body>
+</html>
