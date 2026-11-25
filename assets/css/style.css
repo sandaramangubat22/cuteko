@@ -519,6 +519,9 @@ table.table td.actions { text-align: right; white-space: nowrap; }
 }
 .filters input, .filters select { border-color: var(--line); }
 .filters select { flex: 1 1 185px; width: auto; }
+.filters .salary-range { display: flex; align-items: center; gap: .35rem; flex: 1 1 200px; }
+.filters .salary-range input { flex: 1 1 0; min-width: 0; }
+.filters .salary-range span { color: var(--muted); font-size: .8rem; }
 .filters .row { flex: 0 0 auto; margin-left: auto; }
 .filters.filters-split select { flex: 1 1 auto; }
 @media (min-width: 761px) {

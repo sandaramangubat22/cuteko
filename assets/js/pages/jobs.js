@@ -1,32 +1,51 @@
 import { sb } from "../supabase.js";
 import { initPage } from "../auth.js";
-import { $, param, safeFilter, escapeHtml, jobCard, emptyState } from "../ui.js";
+import { $, param, safeFilter, escapeHtml, jobCard, emptyState, toast } from "../ui.js";
 
 const form = $("#filters");
 const list = $("#jobs-list");
 const countEl = $("#result-count");
 
-const SALARY_RANGES = ["", "0-15000", "15000-25000", "25000-40000", "40000-60000", "60000-"];
-const salaryParam = param("salary") || "";
+function readAmount(value) {
+  const raw = String(value ?? "").replace(/[^0-9]/g, "");
+  return raw ? Number(raw) : "";
+}
+
+function formatPeso(value) {
+  const digits = String(value ?? "")
+    .replace(/[^0-9]/g, "")
+    .slice(0, 7)
+    .replace(/^0+(?=\d)/, "");
+  return digits ? `₱${Number(digits).toLocaleString("en-PH")}` : "";
+}
 
 const state = {
   q: param("q") || "",
   location: param("location") || "",
   type: param("type") || "",
-  salary: SALARY_RANGES.includes(salaryParam) ? salaryParam : "",
+  min: readAmount(param("salary_min")),
+  max: readAmount(param("salary_max")),
 };
 
 form.q.value = state.q;
 form.location.value = state.location;
 form.type.value = state.type;
-form.salary.value = state.salary;
+form.salary_min.value = formatPeso(state.min);
+form.salary_max.value = formatPeso(state.max);
+
+for (const input of [form.salary_min, form.salary_max]) {
+  input.addEventListener("input", () => {
+    input.value = formatPeso(input.value);
+  });
+}
 
 function syncUrl() {
   const params = new URLSearchParams();
   if (state.q) params.set("q", state.q);
   if (state.location) params.set("location", state.location);
   if (state.type) params.set("type", state.type);
-  if (state.salary) params.set("salary", state.salary);
+  if (state.min !== "") params.set("salary_min", state.min);
+  if (state.max !== "") params.set("salary_max", state.max);
   const qs = params.toString();
   history.replaceState(null, "", "/jobs.html" + (qs ? `?${qs}` : ""));
 }
@@ -47,11 +66,8 @@ async function load() {
   }
   if (state.location) query = query.ilike("location", `%${safeFilter(state.location)}%`);
   if (state.type) query = query.eq("employment_type", state.type);
-  if (state.salary) {
-    const [lo, hi] = state.salary.split("-");
-    if (lo) query = hi ? query.gte("salary_max", Number(lo)) : query.gt("salary_max", Number(lo));
-    if (hi) query = query.lte("salary_min", Number(hi));
-  }
+  if (state.min !== "") query = query.gte("salary_max", state.min);
+  if (state.max !== "") query = query.lte("salary_min", state.max);
 
   const { data, error } = await query;
 
@@ -77,16 +93,24 @@ async function load() {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+  const min = readAmount(form.salary_min.value);
+  const max = readAmount(form.salary_max.value);
+  if (min !== "" && max !== "" && min > max) {
+    toast("Minimum salary can't be higher than the maximum.");
+    return;
+  }
   state.q = form.q.value.trim();
   state.location = form.location.value.trim();
   state.type = form.type.value;
-  state.salary = form.salary.value;
+  state.min = min;
+  state.max = max;
   syncUrl();
   load();
 });
 
 $("#clear-filters").addEventListener("click", () => {
-  state.q = state.location = state.type = state.salary = "";
+  state.q = state.location = state.type = "";
+  state.min = state.max = "";
   form.reset();
   syncUrl();
   load();
