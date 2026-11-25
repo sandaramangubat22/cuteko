@@ -1,6 +1,6 @@
 import { sb } from "../supabase.js";
 import { initPage, getCurrentUser } from "../auth.js";
-import { $, param, escapeHtml, fmtDate, badge, toast, setBusy } from "../ui.js";
+import { $, param, escapeHtml, fmtDate, badge, toast, setBusy, fmtSalary } from "../ui.js";
 
 const jobId = param("id");
 const root = $("#job-root");
@@ -24,6 +24,7 @@ function renderJob(job) {
   const employer = job.employers || {};
   const posted = fmtDate(job.date_posted);
   const deadline = job.application_deadline ? fmtDate(job.application_deadline) : "Open until filled";
+  const salary = fmtSalary(job.salary_min, job.salary_max);
   const website = company.company_website
     ? `<a href="${escapeHtml(/^https?:\/\//.test(company.company_website) ? company.company_website : `https://${company.company_website}`)}"
          target="_blank" rel="noopener noreferrer">${escapeHtml(company.company_website)}</a>`
@@ -39,7 +40,7 @@ function renderJob(job) {
         <div class="job-meta" style="margin-top:.6rem">
           ${badge(job.job_status)}
           <span class="pill">${escapeHtml(job.employment_type || "—")}</span>
-          ${job.salary_range ? `<span class="pill">${escapeHtml(job.salary_range)}</span>` : ""}
+          ${salary ? `<span class="pill">${escapeHtml(salary)}</span>` : ""}
           <span class="pill">Posted ${escapeHtml(posted)}</span>
           <span class="pill">Deadline: ${escapeHtml(deadline)}</span>
         </div>

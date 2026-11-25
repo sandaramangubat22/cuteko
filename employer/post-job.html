@@ -49,22 +49,28 @@
 
         <div class="form-row">
           <div class="field">
-            <label for="salary_range">Salary range</label>
-            <input id="salary_range" name="salary_range" type="text" placeholder="e.g. ₱25,000 – ₱35,000 / month">
+            <label for="salary_min">Minimum salary (₱)</label>
+            <input id="salary_min" name="salary_min" type="number" min="0" step="500" placeholder="e.g. 25000">
           </div>
+          <div class="field">
+            <label for="salary_max">Maximum salary (₱)</label>
+            <input id="salary_max" name="salary_max" type="number" min="0" step="500" placeholder="e.g. 35000">
+          </div>
+        </div>
+
+        <div class="form-row">
           <div class="field">
             <label for="application_deadline">Application deadline</label>
             <input id="application_deadline" name="application_deadline" type="date">
           </div>
-        </div>
-
-        <div class="field">
-          <label for="job_status">Visibility</label>
-          <select id="job_status" name="job_status">
-            <option value="open">Open — visible to everyone</option>
-            <option value="draft">Draft — only you can see it</option>
-            <option value="closed">Closed — no new applications</option>
-          </select>
+          <div class="field">
+            <label for="job_status">Visibility</label>
+            <select id="job_status" name="job_status">
+              <option value="open">Open — visible to everyone</option>
+              <option value="draft">Draft — only you can see it</option>
+              <option value="closed">Closed — no new applications</option>
+            </select>
+          </div>
         </div>
       </section>
 

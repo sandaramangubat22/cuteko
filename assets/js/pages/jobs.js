@@ -30,7 +30,7 @@ async function load() {
 
   let query = sb
     .from("job_posting")
-    .select("job_id, job_title, employment_type, salary_range, location, date_posted, companies(company_name)")
+    .select("job_id, job_title, employment_type, salary_min, salary_max, location, date_posted, companies(company_name)")
     .eq("job_status", "open")
     .order("date_posted", { ascending: false })
     .limit(60);

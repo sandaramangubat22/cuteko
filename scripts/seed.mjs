@@ -425,6 +425,7 @@ for (let i = 0; i < JOBS.length; i += 1) {
 
   let jobRow = await findOne("job_posting", { job_title: job.title, company_id: companyId });
   if (!jobRow) {
+    const [salaryMin, salaryMax] = (job.salary.match(/[0-9][0-9,]*/g) || []).map((n) => Number(n.replace(/,/g, "")));
     const { data, error } = await admin
       .from("job_posting")
       .insert({
@@ -435,7 +436,8 @@ for (let i = 0; i < JOBS.length; i += 1) {
         qualifications: job.qualifications,
         skills_required: job.skills,
         employment_type: job.type,
-        salary_range: job.salary,
+        salary_min: salaryMin ?? null,
+        salary_max: salaryMax ?? null,
         location: job.location,
         application_deadline: daysFromNow(job.days),
         job_status: "open",

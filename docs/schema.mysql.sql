@@ -198,7 +198,8 @@ create table job_posting (
   qualifications      text         null,
   skills_required     text         null,
   employment_type     varchar(50)  not null,
-  salary_range        varchar(100) null,
+  salary_min          int          null,
+  salary_max          int          null,
   location            varchar(100) not null,
   date_posted         datetime     not null default current_timestamp,
   application_deadline date        null,
@@ -211,7 +212,9 @@ create table job_posting (
     on delete cascade on update cascade,
   constraint job_posting_employer_fk foreign key (employer_id) references employers (employer_id)
     on delete cascade on update cascade,
-  constraint job_posting_status_chk check (job_status in ('draft', 'open', 'closed'))
+  constraint job_posting_status_chk check (job_status in ('draft', 'open', 'closed')),
+  constraint job_posting_salary_chk check (salary_min is null or salary_min >= 0),
+  constraint job_posting_salary_max_chk check (salary_max is null or salary_max >= 0)
 ) engine = InnoDB;
 
 -- ---------------------------------------------------------------------------

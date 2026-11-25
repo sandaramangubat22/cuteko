@@ -33,11 +33,11 @@ if (me) {
         errorEl.classList.remove("hidden");
       } else {
         for (const key of [
-          "job_title", "employment_type", "location", "salary_range",
+          "job_title", "employment_type", "location", "salary_min", "salary_max",
           "application_deadline", "job_status", "job_description",
           "qualifications", "skills_required",
         ]) {
-          if (form[key]) form[key].value = job[key] || "";
+          if (form[key]) form[key].value = job[key] ?? "";
         }
       }
     }
@@ -56,6 +56,13 @@ if (me) {
         errorEl.classList.remove("hidden");
         return;
       }
+      const salaryMin = form.salary_min.value === "" ? null : Number(form.salary_min.value);
+      const salaryMax = form.salary_max.value === "" ? null : Number(form.salary_max.value);
+      if (salaryMin != null && salaryMax != null && salaryMin > salaryMax) {
+        errorEl.textContent = "Minimum salary cannot be higher than the maximum.";
+        errorEl.classList.remove("hidden");
+        return;
+      }
 
       const payload = {
         company_id: employer.company_id,
@@ -63,7 +70,8 @@ if (me) {
         job_title: form.job_title.value.trim(),
         employment_type: form.employment_type.value,
         location: form.location.value.trim(),
-        salary_range: form.salary_range.value.trim() || null,
+        salary_min: salaryMin,
+        salary_max: salaryMax,
         application_deadline: form.application_deadline.value || null,
         job_status: form.job_status.value,
         job_description: form.job_description.value.trim(),

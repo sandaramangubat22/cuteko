@@ -154,7 +154,8 @@ create table if not exists public.job_posting (
   qualifications       text,
   skills_required      text,
   employment_type      varchar(50)  not null,
-  salary_range         varchar(100),
+  salary_min           integer check (salary_min >= 0),
+  salary_max           integer check (salary_max >= 0),
   location             varchar(100) not null,
   date_posted          timestamptz  not null default now(),
   application_deadline date,
@@ -165,6 +166,10 @@ create table if not exists public.job_posting (
 create index if not exists job_posting_company_idx  on public.job_posting (company_id);
 create index if not exists job_posting_employer_idx on public.job_posting (employer_id);
 create index if not exists job_posting_status_idx   on public.job_posting (job_status);
+
+-- salary split into a numeric range for databases created before it existed
+alter table public.job_posting add column if not exists salary_min integer check (salary_min >= 0);
+alter table public.job_posting add column if not exists salary_max integer check (salary_max >= 0);
 
 -- ---------------------------------------------------------------------------
 -- 9. APPLICATIONS

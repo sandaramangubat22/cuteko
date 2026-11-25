@@ -53,6 +53,14 @@ export function badge(status) {
   return `<span class="badge ${escapeHtml(s)}">${escapeHtml(status || "—")}</span>`;
 }
 
+/** "₱25,000 – ₱35,000", "From ₱25,000", "Up to ₱35,000" or "" when both are empty. */
+export function fmtSalary(min, max) {
+  const peso = (n) => `₱${Number(n).toLocaleString("en-PH")}`;
+  if (min == null && max == null) return "";
+  if (min != null && max != null) return `${peso(min)} – ${peso(max)}`;
+  return min != null ? `From ${peso(min)}` : `Up to ${peso(max)}`;
+}
+
 export function toast(message, type = "") {
   let stack = $(".toast-stack");
   if (!stack) {
@@ -94,6 +102,7 @@ export function emptyState(title, text, actionHtml = "") {
 
 export function jobCard(job) {
   const company = job.companies?.company_name || "Company";
+  const salary = fmtSalary(job.salary_min, job.salary_max);
   return `
     <a class="job-card" href="/job.html?id=${encodeURIComponent(job.job_id)}">
       <h3>${escapeHtml(job.job_title)}</h3>
@@ -101,7 +110,7 @@ export function jobCard(job) {
       <div class="job-meta">
         <span class="pill">${escapeHtml(job.employment_type || "—")}</span>
         <span class="pill">${escapeHtml(job.location || "—")}</span>
-        ${job.salary_range ? `<span class="pill">${escapeHtml(job.salary_range)}</span>` : ""}
+        ${salary ? `<span class="pill">${escapeHtml(salary)}</span>` : ""}
         <span class="pill">${escapeHtml(timeAgo(job.date_posted))}</span>
       </div>
     </a>`;
