@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Browse jobs — MIST Job Portal</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1>Browse jobs</h1>
+        <p id="result-count">Loading openings…</p>
+      </div>
+    </div>
+
+    <form class="filters" id="filters">
+      <input type="search" name="q" placeholder="Job title, skill, or keyword" aria-label="Keyword">
+      <input type="text" name="location" placeholder="Location" aria-label="Location">
+      <select name="type" aria-label="Employment type">
+        <option value="">All employment types</option>
+        <option>Full-time</option>
+        <option>Part-time</option>
+        <option>Contract</option>
+        <option>Internship</option>
+        <option>Freelance</option>
+        <option>Remote</option>
+      </select>
+      <div class="row">
+        <button class="btn btn-primary" type="submit">Filter</button>
+        <button class="btn btn-ghost" type="button" id="clear-filters">Clear</button>
+      </div>
+    </form>
+
+    <div class="grid grid-3" id="jobs-list">
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+    </div>
+  </main>
+
+  <footer id="app-footer"></footer>
+
+  <script src="/assets/js/config.js"></script>
+  <script type="module" src="/assets/js/pages/jobs.js"></script>
+</body>
+</html>

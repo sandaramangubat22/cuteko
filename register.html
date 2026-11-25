@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create account — MIST Job Portal</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="auth-wrap">
+    <div class="auth-card card pad-lg">
+      <h1 style="font-size:1.6rem">Create your account</h1>
+      <p class="muted">Choose how you want to use MIST Job Portal.</p>
+
+      <form class="form" id="register-form" novalidate>
+        <div class="field">
+          <label>I am a…</label>
+          <div class="role-pick">
+            <label>
+              <input type="radio" name="role" value="job_seeker" checked>
+              <b>Job seeker</b>
+              <span>Find and apply for jobs</span>
+            </label>
+            <label>
+              <input type="radio" name="role" value="employer">
+              <b>Employer</b>
+              <span>Post jobs and hire</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" autocomplete="username" required minlength="3" maxlength="100">
+          <span class="hint">This is how you appear in the portal.</span>
+        </div>
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="new-password" required minlength="6">
+          <span class="hint">At least 6 characters.</span>
+        </div>
+
+        <div class="field">
+          <label for="confirm">Confirm password</label>
+          <input id="confirm" name="confirm" type="password" autocomplete="new-password" required>
+        </div>
+
+        <p class="error-text hidden" id="register-error"></p>
+        <p class="success-text hidden" id="register-success"></p>
+        <button class="btn btn-primary btn-block" type="submit" id="register-submit">Create account</button>
+      </form>
+
+      <p class="center muted" style="margin:1rem 0 0;font-size:.88rem">
+        Already registered? <a href="/login.html">Sign in</a>
+      </p>
+    </div>
+  </main>
+
+  <footer id="app-footer"></footer>
+
+  <script src="/assets/js/config.js"></script>
+  <script type="module" src="/assets/js/pages/register.js"></script>
+</body>
+</html>

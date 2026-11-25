@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Company profile — MIST Job Portal</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header id="app-header"></header>
+
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1>Company profile</h1>
+        <p>This information appears on every job you post.</p>
+      </div>
+    </div>
+
+    <div id="setup-banner" class="card setup-banner hidden">
+      <b>One more step</b>
+      <div class="muted" style="font-size:.9rem">Set up your company and contact details before posting your first job.</div>
+    </div>
+
+    <form class="form" id="company-form" novalidate>
+      <section class="card pad-lg">
+        <h2 style="margin-top:0;font-size:1.25rem">Company details</h2>
+        <div class="form-row">
+          <div class="field">
+            <label for="company_name">Company name</label>
+            <input id="company_name" name="company_name" type="text" required>
+          </div>
+          <div class="field">
+            <label for="industry">Industry</label>
+            <input id="industry" name="industry" type="text" required placeholder="e.g. Information Technology">
+          </div>
+        </div>
+        <div class="field">
+          <label for="company_address">Company address</label>
+          <input id="company_address" name="company_address" type="text" required>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="contact_email">Contact email</label>
+            <input id="contact_email" name="contact_email" type="email" required>
+          </div>
+          <div class="field">
+            <label for="contact_number">Contact number</label>
+            <input id="contact_number" name="contact_number" type="tel" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="company_website">Website</label>
+          <input id="company_website" name="company_website" type="text" placeholder="https://example.com">
+        </div>
+        <div class="field">
+          <label for="company_description">About the company</label>
+          <textarea id="company_description" name="company_description" rows="4" placeholder="What does your company do?"></textarea>
+        </div>
+      </section>
+
+      <section class="card pad-lg">
+        <h2 style="margin-top:0;font-size:1.25rem">Your details</h2>
+        <div class="form-row">
+          <div class="field">
+            <label for="first_name">First name</label>
+            <input id="first_name" name="first_name" type="text" required>
+          </div>
+          <div class="field">
+            <label for="last_name">Last name</label>
+            <input id="last_name" name="last_name" type="text" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="position">Position in company</label>
+            <input id="position" name="position" type="text" required placeholder="e.g. HR Manager">
+          </div>
+          <div class="field">
+            <label for="phone_number">Phone number</label>
+            <input id="phone_number" name="phone_number" type="tel" required>
+          </div>
+        </div>
+      </section>
+
+      <p class="error-text hidden" id="company-error"></p>
+      <div class="row">
+        <button class="btn btn-primary" type="submit" id="company-submit">Save company profile</button>
+        <a class="btn btn-ghost" href="/employer/dashboard.html">Go to dashboard</a>
+      </div>
+    </form>
+  </main>
+
+  <footer id="app-footer"></footer>
+
+  <script src="/assets/js/config.js"></script>
+  <script type="module" src="/assets/js/pages/employer-company.js"></script>
+</body>
+</html>
