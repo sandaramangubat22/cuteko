@@ -35,6 +35,8 @@
   --sans: "Work Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
 }
 
+
+
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
@@ -505,9 +507,10 @@ table.table td.actions { text-align: right; white-space: nowrap; }
 
 /* ---------- filters ---------- */
 .filters {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: .5rem;
-  grid-template-columns: 2fr 1fr 1fr auto;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -515,7 +518,13 @@ table.table td.actions { text-align: right; white-space: nowrap; }
   margin-bottom: 1rem;
 }
 .filters input, .filters select { border-color: var(--line); }
-.filters.filters-split { grid-template-columns: 1fr auto; }
+.filters select { flex: 1 1 185px; width: auto; }
+.filters .row { flex: 0 0 auto; margin-left: auto; }
+.filters.filters-split select { flex: 1 1 auto; }
+@media (min-width: 761px) {
+  .filters input[name="q"] { flex: 2 1 240px; }
+  .filters input[name="location"] { flex: 1 1 150px; }
+}
 
 /* ---------- tabs ---------- */
 .tabs { display: flex; gap: .1rem; flex-wrap: wrap; border-bottom: 1px solid var(--line-strong); margin-bottom: 1rem; }
@@ -813,8 +822,10 @@ dialog.modal form { margin: 0; }
 
 @media (max-width: 760px) {
   body { font-size: 14.5px; }
-  .filters { grid-template-columns: 1fr; }
-  .filters.filters-split { grid-template-columns: 1fr; }
+  .filters { flex-direction: column; align-items: stretch; }
+  .filters > input,
+  .filters > select { flex: 1 1 auto; width: 100%; }
+  .filters .row { margin-left: 0; justify-content: flex-end; }
   .form-row { grid-template-columns: 1fr; }
   .search-bar { flex-direction: column; border-radius: var(--radius); }
   .search-bar input + input { border-left: 0; border-top: 1px solid var(--line); border-radius: 0; }
