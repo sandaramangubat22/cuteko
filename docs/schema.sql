@@ -80,6 +80,7 @@ create table if not exists public.job_seekers (
   first_name   varchar(100) not null,
   last_name    varchar(100) not null,
   middle_name  varchar(100),
+  gender       varchar(10)  check (gender in ('male', 'female')),
   address      varchar(255) not null,
   phone_number varchar(20)  not null,
   date_of_birth date,
@@ -88,6 +89,10 @@ create table if not exists public.job_seekers (
   experience   text,
   bio          text
 );
+
+-- add gender to databases created before this column existed
+alter table public.job_seekers
+  add column if not exists gender varchar(10) check (gender in ('male', 'female'));
 
 -- ---------------------------------------------------------------------------
 -- 5. RESUMES

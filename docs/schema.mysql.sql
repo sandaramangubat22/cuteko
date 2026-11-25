@@ -115,6 +115,7 @@ create table job_seekers (
   first_name   varchar(100) not null,
   last_name    varchar(100) not null,
   middle_name  varchar(100) null,
+  gender       varchar(10)  null,
   address      varchar(255) not null,
   phone_number varchar(20)  not null,
   date_of_birth date        null,
@@ -124,6 +125,7 @@ create table job_seekers (
   bio          text         null,
   primary key (seeker_id),
   unique key job_seekers_user_uq (user_id),
+  constraint job_seekers_gender_ck check (gender in ('male', 'female')),
   constraint job_seekers_user_fk foreign key (user_id) references users (user_id)
     on delete cascade on update cascade
 ) engine = InnoDB;

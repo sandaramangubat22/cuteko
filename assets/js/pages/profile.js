@@ -19,7 +19,7 @@ if (me) {
 
   if (seeker) {
     for (const key of [
-      "first_name", "last_name", "middle_name", "phone_number",
+      "first_name", "last_name", "middle_name", "gender", "phone_number",
       "date_of_birth", "address", "education", "skills", "experience", "bio",
     ]) {
       if (form[key]) form[key].value = seeker[key] || "";
@@ -46,6 +46,7 @@ if (me) {
       first_name: form.first_name.value.trim(),
       last_name: form.last_name.value.trim(),
       middle_name: form.middle_name.value.trim() || null,
+      gender: form.gender.value || null,
       phone_number: form.phone_number.value.trim(),
       address: form.address.value.trim(),
       date_of_birth: form.date_of_birth.value || null,
